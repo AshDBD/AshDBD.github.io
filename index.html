@@ -155,7 +155,7 @@ h1{
   background: var(--blue); padding: 0 8px; font-family: var(--mono); font-size: 10px;
   color: var(--line); letter-spacing: 0.1em; text-transform:uppercase;
 }
-.schem-grid{ display:grid; grid-template-columns: repeat(2, 1fr); }
+.schem-grid{ display:grid; grid-template-columns: 1fr; max-width: 420px; }
 .schem-cell{
   border-left: 1px solid var(--line-dim); padding: 22px 24px; position:relative;
 }
@@ -200,6 +200,19 @@ section{ padding: 60px 0; }
 }
 .project-links{ display:flex; gap: 12px; flex-wrap: wrap; padding: 4px 28px 28px; }
 
+.project-row{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 20px; }
+.project-card-sm{ border: 1px solid var(--line); background: var(--blue-panel); display:flex; flex-direction:column; }
+.project-card-sm .project-head{ padding: 20px 20px 0; }
+.project-card-sm h3{ font-family: var(--display); font-size: 16px; color: var(--paper); font-weight:700; margin-bottom: 4px; }
+.project-card-sm .project-sub{ color: var(--line); font-family: var(--mono); font-size: 11px; margin-bottom: 12px; }
+.project-card-sm .project-body{ padding: 0 20px; flex:1; }
+.project-card-sm .project-body p{ color: var(--paper-dim); margin-bottom: 12px; font-size: 13px; }
+.project-card-sm .tags{ padding: 0 20px; margin-bottom: 4px; }
+.project-card-sm .tags span{ font-size: 10px; padding: 4px 8px; margin: 0 6px 6px 0; }
+.project-card-sm .project-links{ padding: 4px 20px 20px; }
+.project-card-sm .project-links .btn{ font-size: 11px; padding: 9px 14px; }
+@media (max-width: 860px){ .project-row{ grid-template-columns: 1fr; } }
+
 /* ---------- certifications ---------- */
 .cert-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
 .cert-card{
@@ -220,14 +233,6 @@ section{ padding: 60px 0; }
 .skill-group ul{ list-style:none; }
 .skill-group li{ color: var(--paper-dim); font-size: 14px; padding: 7px 0; border-bottom: 1px solid var(--line-dim); font-family: var(--mono); }
 @media (max-width: 700px){ .skills-grid{ grid-template-columns: 1fr; gap: 24px; } .skill-group{ border-left:none; padding-left:0; } }
-
-/* ---------- resume ---------- */
-.resume-panel{
-  border: 1px dashed var(--line); padding: 24px 28px; display:flex; align-items:center;
-  justify-content:space-between; flex-wrap: wrap; gap: 16px;
-}
-.resume-panel p{ color: var(--paper-dim); font-size: 14px; max-width: 420px; font-family: var(--mono); }
-.resume-panel strong{ color: var(--paper); }
 
 /* ---------- footer / title block bottom ---------- */
 footer{ padding: 50px 0 40px; }
@@ -289,9 +294,9 @@ footer{ padding: 50px 0 40px; }
     <div class="currently">
       <span class="dot"></span>
       <span class="k">Currently</span>
-      <span>HTB Pentester path</span>
+      <span>PortSwigger Academy</span>
       <span class="sep">·</span>
-      <span>Home network monitoring dashboard</span>
+      <span>Network pentesting / Metasploitable</span>
     </div>
     <p class="hero-desc">
       High school student exploring engineering and cybersecurity through independent
@@ -300,7 +305,7 @@ footer{ padding: 50px 0 40px; }
     </p>
     <div class="btn-row">
       <a class="btn btn-primary" href="#work">View my work</a>
-      <a class="btn btn-ghost" href="mailto:ashutosshdwivedy@proton.me">Email me</a>
+      <a class="btn btn-ghost" href="mailto:ashutooshdwivedy@proton.me">Email me</a>
       <a class="btn btn-ghost" href="https://github.com/Ashutosh-Dwivedy" target="_blank" rel="noopener">GitHub</a>
     </div>
 
@@ -309,22 +314,12 @@ footer{ padding: 50px 0 40px; }
       <div class="schem-grid">
         <div class="schem-cell">
           <div class="fig">Fig. 01</div>
-          <div class="stat">Cybersecurity</div>
+          <div class="stat">Focus Areas</div>
           <ul>
-            <li>Networking fundamentals</li>
-            <li>Linux administration</li>
-            <li>Python scripting</li>
-            <li>Red teaming (in progress)</li>
-          </ul>
-        </div>
-        <div class="schem-cell">
-          <div class="fig">Fig. 02</div>
-          <div class="stat">Engineering &amp; Electronics</div>
-          <ul>
-            <li>Arduino / embedded projects</li>
-            <li>Electronics fundamentals</li>
-            <li>Hardware hacking (self-taught)</li>
-            <li>Mechatronics (self-taught)</li>
+            <li>Network administration &amp; homelabbing</li>
+            <li>Security tooling / scripting</li>
+            <li>Embedded systems (Arduino now, ESP &amp; STM soon)</li>
+            <li>Network &amp; web application security</li>
           </ul>
         </div>
       </div>
@@ -344,87 +339,113 @@ footer{ padding: 50px 0 40px; }
 
     <div class="project-card reveal">
       <div class="project-head">
-        <h3>PortPatrol</h3>
-        <div class="project-sub">Automated port scanner &amp; Linux security hardening utility — Python</div>
+        <h3>Homelab</h3>
+        <div class="project-sub">Self-hosted network &amp; pentesting lab — Traefik, AdGuard Home, Uptime Kuma, Kali / Metasploitable2</div>
       </div>
       <div class="project-body">
         <p>
-          Most open ports on a personal or self-hosted Linux system go unnoticed until they're
-          exploited. Tools like Nmap are excellent at finding them, but stop at detection — the user
-          is left to research the service, decide if it's risky, and figure out how to fix it across
-          several distro-specific commands. PortPatrol closes that gap: it scans, identifies, and
-          remediates in one guided workflow.
+          A home server environment I run and administer to get hands-on practice with the
+          networking and sysadmin work that underlies everything else I build. It hosts a reverse
+          proxy (Traefik), network-wide ad and tracker blocking (AdGuard Home), and uptime / service
+          monitoring (Uptime Kuma), all configured, maintained, and troubleshot by hand rather than
+          through a pre-built dashboard.
         </p>
         <p>
-          It runs a multithreaded scan across a configurable port range using a thread-safe work
-          queue, double-checks every result to rule out transient false positives, then queries the
-          kernel's live socket table directly via <code>ss -tunlp</code> to identify the exact process
-          and PID behind each open port — filtering out anything essential (PID &lt; 1000) so you can't
-          accidentally disable a core service. For whatever's left, it presents five remediation
-          options — block, kill, upgrade, deploy fail2ban, or skip — and executes the right command
-          for your distro automatically, whether that's <code>ufw</code>, <code>firewall-cmd</code>, or <code>iptables</code>.
+          Alongside the administration side, I use the lab as an isolated range for offensive
+          security practice — running Kali Linux against a Metasploitable2 target to work through
+          enumeration, exploitation, and post-exploitation in a safe, contained network. Every
+          exercise gets written up afterward as a short pentest-style report: scope, findings,
+          evidence, and remediation, mirroring how real engagements are documented rather than just
+          collecting terminal output.
         </p>
       </div>
       <div class="pivot-box">
         <div class="label">Design decision</div>
         <p>
-          Early versions used banner grabbing to identify services — reading what each service
-          announces about itself. It worked, but banners can be spoofed, silent, or simply absent.
-          Since PortPatrol is built for hardening the local machine (not scanning remote,
-          unknown targets), I switched to querying the kernel's socket table directly via
-          <code>ss</code> instead — it reports exactly what the OS knows to be true, not what a
-          service chooses to say about itself.
+          I treat the lab as two linked halves — a "blue" side I defend and keep running (DNS,
+          reverse proxy, monitoring) and a "red" side I attack on purpose (Kali vs. Metasploitable2).
+          Running both on the same network forces me to think about findings the way an actual
+          admin would have to: not just "how do I break this" but "what would I tell myself to fix."
         </p>
       </div>
       <div class="tags">
-        <span>Python</span>
-        <span>Threading &amp; Queue</span>
-        <span>Socket Programming</span>
-        <span>Linux (Debian / RHEL / Arch)</span>
-        <span>ufw · firewalld · iptables</span>
-        <span>fail2ban</span>
-        <span>subprocess / argparse</span>
-      </div>
-      <div class="project-links">
-        <a class="btn btn-primary" href="https://github.com/Ashutosh-Dwivedy/PortPatrol" target="_blank" rel="noopener">View repo</a>
+        <span>Linux administration</span>
+        <span>Traefik (reverse proxy)</span>
+        <span>Nginx (web service)</span>
+        <span>AdGuard Home</span>
+        <span>Uptime Kuma</span>
+        <span>Kali Linux</span>
+        <span>Metasploitable2</span>
+        <span>Report writing</span>
       </div>
     </div>
 
-    <div class="project-card reveal">
-      <div class="project-head">
-        <h3>Homelab</h3>
-        <div class="project-sub">Self-hosted infrastructure &amp; offensive security practice lab — Docker · VirtualBox</div>
+    <div class="project-row">
+      <div class="project-card-sm reveal">
+        <div class="project-head">
+          <h3>PortPatrol</h3>
+          <div class="project-sub">Port scanner &amp; Linux hardening utility — Python</div>
+        </div>
+        <div class="project-body">
+          <p>
+            Scans a configurable port range with a multithreaded, thread-safe queue, then cross-checks
+            every open port against the kernel's live socket table (<code>ss -tunlp</code>) to identify
+            the exact process behind it. Presents remediation options — block, kill, upgrade, deploy
+            fail2ban, or skip — and runs the right command for the detected distro.
+          </p>
+        </div>
+        <div class="tags">
+          <span>Python</span>
+          <span>Threading</span>
+          <span>ufw · firewalld · iptables</span>
+        </div>
+        <div class="project-links">
+          <a class="btn btn-ghost" href="https://github.com/Ashutosh-Dwivedy/PortPatrol" target="_blank" rel="noopener">View repo</a>
+        </div>
       </div>
-      <div class="project-body">
-        <p>
-          A two-sided homelab: a self-hosted infrastructure stack for services I actually run
-          day to day, and an isolated offensive security lab for practicing real exploitation
-          rather than just reading about it. The infra side runs Nginx, AdGuard Home for
-          network-wide DNS filtering, and Uptime Kuma for service monitoring, all containerized
-          for easy deployment and management. The security side is a segmented VirtualBox
-          network (Kali Linux against Metasploitable2) used to run full attack chains —
-          reconnaissance, exploitation, and access — end to end.
-        </p>
-        <p>
-          Each exploited vulnerability is documented as a standalone report covering discovery,
-          manual exploitation, the equivalent Metasploit approach, impact, and remediation —
-          written to mirror how findings are documented in a real penetration test rather than
-          just a walkthrough of commands.
-        </p>
+
+      <div class="project-card-sm reveal">
+        <div class="project-head">
+          <h3>Sentinel</h3>
+          <div class="project-sub">Home network monitoring &amp; alerting tool — Python</div>
+        </div>
+        <div class="project-body">
+          <p>
+            A lightweight watchdog for my home network — keeps an eye on connected devices and key
+            services, and flags anything unexpected (a new device on the network, a monitored
+            service going down) rather than requiring me to check dashboards by hand.
+          </p>
+        </div>
+        <div class="tags">
+          <span>Python</span>
+          <span>Networking</span>
+          <span>Automation</span>
+        </div>
+        <div class="project-links">
+          <a class="btn btn-ghost" href="https://github.com/Ashutosh-Dwivedy/_Sentinel_" target="_blank" rel="noopener">View repo</a>
+        </div>
       </div>
-      <div class="tags">
-        <span>Docker</span>
-        <span>Nginx</span>
-        <span>AdGuard Home</span>
-        <span>Uptime Kuma</span>
-        <span>VirtualBox</span>
-        <span>Kali Linux</span>
-        <span>Metasploitable2</span>
-        <span>Nmap</span>
-        <span>Metasploit</span>
-      </div>
-      <div class="project-links">
-        <a class="btn btn-primary" href="https://github.com/Ashutosh-Dwivedy/Homelab" target="_blank" rel="noopener">View repo</a>
+
+      <div class="project-card-sm reveal">
+        <div class="project-head">
+          <h3>Beheader</h3>
+          <div class="project-sub">HTTP security header auditor — Python CLI</div>
+        </div>
+        <div class="project-body">
+          <p>
+            Checks a target URL's HTTP response against key security headers — CSP,
+            Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, and
+            Referrer-Policy — and prints a clean pass/fail table of what's missing or misconfigured.
+          </p>
+        </div>
+        <div class="tags">
+          <span>Python</span>
+          <span>Requests</span>
+          <span>tabulate</span>
+        </div>
+        <div class="project-links">
+          <a class="btn btn-ghost" href="https://github.com/Ashutosh-Dwivedy/Beheader" target="_blank" rel="noopener">View repo</a>
+        </div>
       </div>
     </div>
   </div>
@@ -477,6 +498,8 @@ footer{ padding: 50px 0 40px; }
           <li>Python</li>
           <li>Bash / CLI tooling</li>
           <li>Git &amp; GitHub</li>
+          <li>Burp Suite</li>
+          <li>SQL</li>
         </ul>
       </div>
       <div class="skill-group">
@@ -491,9 +514,9 @@ footer{ padding: 50px 0 40px; }
       <div class="skill-group">
         <span class="tag">Security Concepts</span>
         <ul>
-          <li>Port scanning &amp; enumeration</li>
-          <li>Firewall configuration</li>
-          <li>Service hardening &amp; remediation</li>
+          <li>Port scanning, enumeration &amp; service hardening</li>
+          <li>SQL injection</li>
+          <li>Port &amp; service exploitation</li>
         </ul>
       </div>
       <div class="skill-group">
@@ -503,7 +526,10 @@ footer{ padding: 50px 0 40px; }
           <li>TryHackMe — Windows Fundamentals 1 &amp; 2</li>
           <li>HTB Academy — Introduction to Networking</li>
           <li>HTB Academy — Network Analysis Fundamentals</li>
-          <li>HTB Academy — Linux Fundamentals (in progress)</li>
+          <li>PortSwigger Web Security Academy</li>
+          <li>Linux Journey</li>
+          <li>OverTheWire wargames</li>
+          <li>Metasploitable (self-directed pentesting practice)</li>
         </ul>
       </div>
     </div>
@@ -512,31 +538,17 @@ footer{ padding: 50px 0 40px; }
 
 <div class="wrap"><div class="dim-rule"><span class="tick"></span><span class="seg"></span><span>§4</span><span class="seg"></span><span class="tick"></span></div></div>
 
-<section id="resume">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="idx">§4</span>
-      <h2>Resume</h2>
-      <div class="rule"></div>
-    </div>
-    <div class="resume-panel reveal">
-      <p><strong>Resume in progress.</strong> A downloadable version is coming soon — in the meantime, reach out directly by email.</p>
-      <a class="btn btn-ghost" href="mailto:ashutosshdwivedy@proton.me">Email me</a>
-    </div>
-  </div>
-</section>
-
 <footer id="contact">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="idx">§5</span>
+      <span class="idx">§4</span>
       <h2>Contact</h2>
       <div class="rule"></div>
     </div>
     <div class="contact-row reveal">
-      <a class="contact-card" href="mailto:ashutosshdwivedy@proton.me">
+      <a class="contact-card" href="mailto:ashutooshdwivedy@proton.me">
         <span class="k">Email</span>
-        <span class="v">ashutosshdwivedy@proton.me</span>
+        <span class="v">ashutooshdwivedy@proton.me</span>
       </a>
       <a class="contact-card" href="https://github.com/Ashutosh-Dwivedy" target="_blank" rel="noopener">
         <span class="k">GitHub</span>
